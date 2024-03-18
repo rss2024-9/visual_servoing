@@ -98,7 +98,8 @@ class ParkingController(Node):
             u_speed = self.speed_controller(d)
 
         #publish drive command
-        u_speed = np.clip(u_speed,-2.,2.) #limit the speed setting
+        max_speed = 1.0
+        u_speed = np.clip(u_speed,-max_speed,max_speed) #limit the speed setting
         drive_cmd.drive.speed = u_speed
         self.v = u_speed
 
@@ -140,6 +141,10 @@ class ParkingController(Node):
         error_msg.distance_error = d_error
 
         #################################
+        errors = "errors.txt"
+        with open(errors, "a") as f:
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}, {x_error}, {y_error}, {d_error}\n")
+
         
         self.error_pub.publish(error_msg)
 
