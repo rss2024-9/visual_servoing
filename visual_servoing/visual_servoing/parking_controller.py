@@ -141,6 +141,10 @@ class ParkingController(Node):
         error_msg.distance_error = d_error
 
         #################################
+        errors = "errors.txt"
+        with open(errors, "a") as f:
+            f.write(f"{time.time()}, {x_error}, {y_error}, {d_error}")
+
         
         self.error_pub.publish(error_msg)
 
