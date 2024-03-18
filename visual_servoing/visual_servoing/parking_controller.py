@@ -68,34 +68,34 @@ class ParkingController(Node):
 
         critical_radius = (min_turning_radius**2+self.parking_distance**2)**0.5
 
-        if ((x**2 + (y-min_turning_radius)**2) < critical_radius**2) or (x**2 + (y+min_turning_radius**2) < critical_radius**2): #handles the case where the cone is in the dead area
-            u_speed = -0.5
+        # if ((x**2 + (y-min_turning_radius)**2) < critical_radius**2) or (x**2 + (y+min_turning_radius**2) < critical_radius**2): #handles the case where the cone is in the dead area
+        #     u_speed = -0.5
 
-            # end_time = time.time()
-            # dt = self.start_time-end_time
-            u_steering = self.theta_controller(theta)
-            #this section helps fix the annoying spots where it gets confused
-            if y > 0:
-                u_steering = -abs(u_steering)
-            elif y < 0:
-                u_steering = abs(u_steering)
+        #     # end_time = time.time()
+        #     # dt = self.start_time-end_time
+        #     u_steering = self.theta_controller(theta)
+        #     #this section helps fix the annoying spots where it gets confused
+        #     if y > 0:
+        #         u_steering = -abs(u_steering)
+        #     elif y < 0:
+        #         u_steering = abs(u_steering)
 
-        else:
+        # else:
             # thetacontroller = PIDController(-2,0,0,0)
             # end_time = time.time()
             # dt = self.start_time-end_time
-            u_steering = -self.theta_controller(theta)
+        u_steering = -self.theta_controller(theta)
 
-            #this section helps fix the annoying spots where it gets confused
-            if y > 0:
-                u_steering = abs(u_steering)
-            elif y < 0:
-                u_steering = -abs(u_steering)
-            
+        #this section helps fix the annoying spots where it gets confused
+        if y > 0:
+            u_steering = abs(u_steering)
+        elif y < 0:
+            u_steering = -abs(u_steering)
+        
 
 
-            # speedcontroller = PIDController(-1,0,0,self.parking_distance)
-            u_speed = self.speed_controller(d)
+        # speedcontroller = PIDController(-1,0,0,self.parking_distance)
+        u_speed = 1.25
 
         #publish drive command
         max_speed = 1.0
