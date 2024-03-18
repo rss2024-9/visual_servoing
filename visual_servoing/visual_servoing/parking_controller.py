@@ -143,7 +143,7 @@ class ParkingController(Node):
         #################################
         errors = "errors.txt"
         with open(errors, "a") as f:
-            f.write(f"{time.time()}, {x_error}, {y_error}, {d_error}")
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}, {x_error}, {y_error}, {d_error}\n")
 
         
         self.error_pub.publish(error_msg)
