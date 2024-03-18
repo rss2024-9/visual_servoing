@@ -60,7 +60,7 @@ def cd_color_segmentation(img, template):
 	# returns list of contours and hiearchy, retr ignores inside countours, approx is for compression
 	contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-	# lookahead = 50
+	# lookahead = 50 
 	# should only be one if its just cone
 	if len(contours) != 0:
 		biggest_contour = max(contours, key = cv2.contourArea)
