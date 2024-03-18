@@ -43,7 +43,7 @@ def cd_color_segmentation(img, template):
 	#orange_low = (0, 100, 100)
 	#orange_high = (18, 255, 255)	
 
-	orange_low = (0, 120, 150)
+	orange_low = (0, 100, 100)
 	orange_high = (20, 255, 255)	
 
 	mask = cv2.inRange(hsv_img, orange_low, orange_high)
