@@ -22,6 +22,12 @@ def image_print(img):
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
+def black_box(img):
+	h,w = img.shape[:2]
+	cv2.rectangle(img,(0,0),(w,int(h*.4)),(0,0,0),-1) #top rectangle
+	cv2.rectangle(img, (0, h-int(h*.4)), (w, h), (0, 0, 0), -1)#bottom rectangle
+	return img
+
 def cd_color_segmentation(img, template):
 	"""
 	Implement the cone detection using color segmentation algorithm
@@ -35,6 +41,7 @@ def cd_color_segmentation(img, template):
 	########## YOUR CODE STARTS HERE ##########
 
 	bounding_box = ((0,0),(0,0))
+	img = black_box(img)
 	hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 	# cv2.imwrite("hsv.jpg", hsv_img) 
 
