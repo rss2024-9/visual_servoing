@@ -25,7 +25,7 @@ def image_print(img):
 def black_box(img):
 	h,w = img.shape[:2]
 	cv2.rectangle(img,(0,0),(w,int(h*.4)),(0,0,0),-1) #top rectangle
-	cv2.rectangle(img, (0, h-int(h*.4)), (w, h), (0, 0, 0), -1)#bottom rectangle
+	cv2.rectangle(img, (0, h-int(h*.8)), (w, h), (0, 0, 0), -1)#bottom rectangle
 	return img
 
 def cd_color_segmentation(img, template):
